@@ -4,9 +4,12 @@ import { CadastrarDemanda } from './pages/CadastrarDemanda';
 import { CadastrarPrestador } from './pages/CadastrarPrestador';
 import { Oportunidades } from './pages/Oportunidades';
 import { Login } from './pages/Login';
-import { Tractor, Sprout, Briefcase, LogIn } from 'lucide-react';
+import { Tractor, Sprout, Briefcase, LogIn, Menu, X } from 'lucide-react';
+import { useState } from 'react';
 
 function App() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const closeMenu = () => setIsMobileMenuOpen(false);
 
   return (
     <>
@@ -24,7 +27,7 @@ function App() {
             <span style={{ fontSize: '1.25rem', fontWeight: 700 }}>Conexão<span style={{ color: 'var(--accent-color)' }}>Forragem</span></span>
           </Link>
           
-          <nav className="hidden md:flex gap-4" style={{ display: 'flex', alignItems: 'center' }}>
+          <nav className="desktop-nav">
             <Link to="/oportunidades" className="btn btn-secondary">
               <Briefcase size={18} />
               Ver Oportunidades
@@ -41,8 +44,33 @@ function App() {
               Entrar
             </Link>
           </nav>
+
+          <button className="mobile-nav-btn" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+            {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
         </div>
       </header>
+
+      {isMobileMenuOpen && (
+        <div className="mobile-menu">
+          <Link to="/oportunidades" className="btn btn-secondary" style={{ justifyContent: 'flex-start' }} onClick={closeMenu}>
+            <Briefcase size={18} />
+            Ver Oportunidades
+          </Link>
+          <Link to="/cadastrar-demanda" className="btn btn-primary" style={{ justifyContent: 'flex-start' }} onClick={closeMenu}>
+            <Sprout size={18} />
+            Preciso de Silagem
+          </Link>
+          <Link to="/cadastrar-prestador" className="btn btn-secondary" style={{ justifyContent: 'flex-start' }} onClick={closeMenu}>
+            <Tractor size={18} />
+            Sou Prestador
+          </Link>
+          <Link to="/login" className="btn btn-primary" style={{ justifyContent: 'flex-start', background: 'var(--bg-card)', borderColor: 'var(--border-color)', color: 'var(--text-primary)' }} onClick={closeMenu}>
+            <LogIn size={18} />
+            Entrar
+          </Link>
+        </div>
+      )}
 
       <main className="main-content">
         <Routes>

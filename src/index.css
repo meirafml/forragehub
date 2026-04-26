@@ -297,3 +297,43 @@ select.form-control {
 .hidden {
   display: none;
 }
+
+.desktop-nav {
+  display: none;
+}
+
+.mobile-nav-btn {
+  display: flex;
+  color: var(--text-primary);
+}
+
+.mobile-menu {
+  position: fixed;
+  top: 80px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--bg-color);
+  z-index: 40;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (min-width: 768px) {
+  .desktop-nav {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .mobile-nav-btn {
+    display: none;
+  }
+}
