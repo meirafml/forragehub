@@ -39,10 +39,6 @@ function App() {
             <Link to="/cadastrar-prestador" className="btn btn-secondary" style={{ borderColor: 'transparent', padding: '10px 16px' }}>
               Sou Prestador
             </Link>
-            <Link to="/login" className="btn btn-secondary" style={{ background: 'var(--bg-card)', padding: '10px 16px' }}>
-              <LogIn size={18} />
-              Entrar
-            </Link>
           </nav>
 
           <button className="mobile-nav-btn" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
@@ -64,10 +60,6 @@ function App() {
           <Link to="/cadastrar-prestador" className="btn btn-secondary" style={{ justifyContent: 'flex-start' }} onClick={closeMenu}>
             <Tractor size={18} />
             Sou Prestador
-          </Link>
-          <Link to="/login" className="btn btn-primary" style={{ justifyContent: 'flex-start', background: 'var(--bg-card)', borderColor: 'var(--border-color)', color: 'var(--text-primary)' }} onClick={closeMenu}>
-            <LogIn size={18} />
-            Entrar
           </Link>
         </div>
       )}
