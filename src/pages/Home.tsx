@@ -61,34 +61,7 @@ export function Home() {
         </div>
       </section>
 
-      {/* Visual Section */}
-      <section style={{ padding: '0 0 80px' }}>
-        <div className="container">
-          <div className="grid grid-cols-3" style={{ gap: '24px' }}>
-            <div style={{ height: '260px', borderRadius: 'var(--radius-lg)', overflow: 'hidden', position: 'relative', border: '1px solid var(--border-color)' }}>
-              <img src="https://images.unsplash.com/photo-1592982537447-6f296d052065?q=80&w=1000&auto=format&fit=crop" alt="Colheita de Silagem" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-              <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '24px', background: 'linear-gradient(transparent, rgba(11,15,25,0.9))' }}>
-                <h3 style={{ fontSize: '1.5rem', color: '#fff' }}>Silagem</h3>
-                <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.9rem' }}>Milho, Sorgo, Capiaçu</p>
-              </div>
-            </div>
-            <div style={{ height: '260px', borderRadius: 'var(--radius-lg)', overflow: 'hidden', position: 'relative', border: '1px solid var(--border-color)' }}>
-              <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?q=80&w=1000&auto=format&fit=crop" alt="Fardos de Feno" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-              <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '24px', background: 'linear-gradient(transparent, rgba(11,15,25,0.9))' }}>
-                <h3 style={{ fontSize: '1.5rem', color: '#fff' }}>Feno</h3>
-                <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.9rem' }}>Tifton, Jiggs, Alfafa</p>
-              </div>
-            </div>
-            <div style={{ height: '260px', borderRadius: 'var(--radius-lg)', overflow: 'hidden', position: 'relative', border: '1px solid var(--border-color)' }}>
-              <img src="https://images.unsplash.com/photo-1595841696677-6489ff3f8cd1?q=80&w=1000&auto=format&fit=crop" alt="Pré-secado" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-              <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '24px', background: 'linear-gradient(transparent, rgba(11,15,25,0.9))' }}>
-                <h3 style={{ fontSize: '1.5rem', color: '#fff' }}>Pré-secado</h3>
-                <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.9rem' }}>Aveia, Azevém, Coastcross</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+
 
       {/* How it works */}
       <section style={{ padding: '80px 0', backgroundColor: 'var(--bg-secondary)' }}>

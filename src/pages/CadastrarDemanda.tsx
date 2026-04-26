@@ -64,6 +64,14 @@ export function CadastrarDemanda() {
             </div>
 
             <div className="form-group" style={{ gridColumn: '1 / -1', marginBottom: 0 }}>
+              <label className="form-label">Preferência de Contato</label>
+              <select className="form-control" required>
+                <option value="true">Quero receber ligações/mensagens dos prestadores de serviço</option>
+                <option value="false">Quero apenas listar a demanda e eu mesmo escolherei com quem falar (Seu telefone ficará oculto)</option>
+              </select>
+            </div>
+
+            <div className="form-group" style={{ gridColumn: '1 / -1', marginBottom: 0 }}>
               <label className="form-label">Link do Google Maps da lavoura (Opcional)</label>
               <input type="url" className="form-control" placeholder="https://maps.app.goo.gl/..." />
               <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginTop: '6px' }}>Ajuda os prestadores a calcularem a distância exata até a sua propriedade.</p>

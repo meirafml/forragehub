@@ -62,6 +62,7 @@ model Demanda {
   historicoAutoProp  String?  // "sim", "nao", "nao-sei"
   
   observacoes        String?
+  aceitaContato      Boolean  @default(true)
   status             String   @default("ABERTA") // ABERTA, NEGOCIACAO, CONCLUIDA
   
   createdAt          DateTime @default(now())
