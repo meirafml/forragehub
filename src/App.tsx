@@ -1,16 +1,11 @@
-import { Routes, Route, Link, useLocation } from 'react-router-dom';
+import { Routes, Route, Link } from 'react-router-dom';
 import { Home } from './pages/Home';
 import { CadastrarDemanda } from './pages/CadastrarDemanda';
 import { CadastrarPrestador } from './pages/CadastrarPrestador';
 import { Oportunidades } from './pages/Oportunidades';
-import { Tractor, Sprout, Briefcase, Menu, X } from 'lucide-react';
-import { useState } from 'react';
+import { Tractor, Sprout, Briefcase } from 'lucide-react';
 
 function App() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const location = useLocation();
-
-  const closeMenu = () => setIsMobileMenuOpen(false);
 
   return (
     <>
