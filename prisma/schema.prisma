@@ -1,0 +1,69 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Prestador {
+  id               String    @id @default(uuid())
+  nome             String
+  empresa          String?
+  cpfCnpj          String    @unique
+  telefone         String
+  email            String    @unique
+  cidade           String
+  estado           String
+  regiao           String
+  servicosCorte    Boolean   @default(false)
+  servicosTransp   Boolean   @default(false)
+  servicosCompact  Boolean   @default(false)
+  servicosVedacao  Boolean   @default(false)
+  planoAtivo       Boolean   @default(false)
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  maquinas         Maquina[]
+}
+
+model Maquina {
+  id           String    @id @default(uuid())
+  prestadorId  String
+  prestador    Prestador @relation(fields: [prestadorId], references: [id], onDelete: Cascade)
+  tipo         String    // "autopropelida", "trator", "ambas"
+  marca        String?
+  modelo       String?
+  ano          Int?
+  quantidade   Int       @default(1)
+}
+
+model Demanda {
+  id                 String   @id @default(uuid())
+  responsavel        String
+  propriedade        String
+  cidade             String
+  estado             String
+  telefone           String
+  mapsLink           String?
+  
+  tipoServico        String   // "silagem", "feno", "pre_secado"
+  cultura            String   // "milho", "sorgo", "brs_capiacu", etc
+  areaHectares       Float
+  dataPlantio        DateTime?
+  previsaoColheita   String   // ex: "Março/2026"
+  
+  terreno            String   // "plano", "ondulado", "acidentado"
+  acesso             String   // "bom", "regular", "ruim"
+  estruturaApoio     String?
+  
+  maquinaDesejada    String   // "autopropelida", "trator", "ambas"
+  historicoAutoProp  String?  // "sim", "nao", "nao-sei"
+  
+  observacoes        String?
+  status             String   @default("ABERTA") // ABERTA, NEGOCIACAO, CONCLUIDA
+  
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}
