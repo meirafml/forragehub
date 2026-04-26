@@ -3,7 +3,8 @@ import { Home } from './pages/Home';
 import { CadastrarDemanda } from './pages/CadastrarDemanda';
 import { CadastrarPrestador } from './pages/CadastrarPrestador';
 import { Oportunidades } from './pages/Oportunidades';
-import { Tractor, Sprout, Briefcase } from 'lucide-react';
+import { Login } from './pages/Login';
+import { Tractor, Sprout, Briefcase, LogIn } from 'lucide-react';
 
 function App() {
 
@@ -32,8 +33,12 @@ function App() {
               <Sprout size={18} />
               Preciso de Silagem
             </Link>
-            <Link to="/cadastrar-prestador" className="btn btn-secondary" style={{ borderColor: 'transparent' }}>
+            <Link to="/cadastrar-prestador" className="btn btn-secondary" style={{ borderColor: 'transparent', padding: '10px 16px' }}>
               Sou Prestador
+            </Link>
+            <Link to="/login" className="btn btn-secondary" style={{ background: 'var(--bg-card)', padding: '10px 16px' }}>
+              <LogIn size={18} />
+              Entrar
             </Link>
           </nav>
         </div>
@@ -45,6 +50,7 @@ function App() {
           <Route path="/cadastrar-demanda" element={<CadastrarDemanda />} />
           <Route path="/cadastrar-prestador" element={<CadastrarPrestador />} />
           <Route path="/oportunidades" element={<Oportunidades />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </main>
 
