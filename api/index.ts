@@ -70,4 +70,19 @@ app.post('/api/prestadores', async (req, res) => {
   }
 });
 
+// ==========================================
+// LEADS (Pré-cadastro)
+// ==========================================
+app.post('/api/leads', async (req, res) => {
+  try {
+    const lead = await prisma.lead.create({
+      data: req.body
+    });
+    res.status(201).json(lead);
+  } catch (error) {
+    console.error("Erro ao criar lead:", error);
+    res.status(500).json({ error: 'Erro ao criar lead' });
+  }
+});
+
 export default app;

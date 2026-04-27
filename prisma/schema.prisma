@@ -69,3 +69,10 @@ model Demanda {
   createdAt          DateTime @default(now())
   updatedAt          DateTime @updatedAt
 }
+
+model Lead {
+  id        String   @id @default(uuid())
+  nome      String
+  whatsapp  String
+  createdAt DateTime @default(now())
+}
