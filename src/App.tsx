@@ -1,11 +1,11 @@
-import { Routes, Route, Link, useLocation } from 'react-router-dom';
+import { Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
 import { Home } from './pages/Home';
 import { CadastrarDemanda } from './pages/CadastrarDemanda';
 import { CadastrarPrestador } from './pages/CadastrarPrestador';
-import { Oportunidades } from './pages/Oportunidades';
-import { Login } from './pages/Login';
-import { Tractor } from 'lucide-react';
+import { Portal } from './pages/Portal';
+import { Tractor, LogOut, User } from 'lucide-react';
 import { useEffect } from 'react';
+import { useAuth } from './context/AuthContext';
 
 // Scroll to top on every route change
 function ScrollToTop() {
@@ -16,7 +16,18 @@ function ScrollToTop() {
   return null;
 }
 
+// Guard: only produtores can access CadastrarDemanda
+function ProdutorGuard({ children }: { children: React.ReactNode }) {
+  const { user, isLoggedIn } = useAuth();
+  if (isLoggedIn && user?.role === 'prestador') {
+    return <Navigate to="/portal" replace />;
+  }
+  return <>{children}</>;
+}
+
 function App() {
+  const { user, isLoggedIn, logout } = useAuth();
+
   return (
     <>
       <ScrollToTop />
@@ -40,18 +51,40 @@ function App() {
           </Link>
           
           {/* Desktop Nav - Hidden on mobile (<900px) */}
-          <nav className="desktop-nav" style={{ display: 'none' }}>
-            <a href="/#problema" style={{ color: 'var(--text)', fontWeight: 500, fontSize: '0.95rem' }}>O Problema</a>
-            <a href="/#como-funciona" style={{ color: 'var(--text)', fontWeight: 500, fontSize: '0.95rem' }}>Como Funciona</a>
-            <a href="/#prestadores" style={{ color: 'var(--text)', fontWeight: 500, fontSize: '0.95rem' }}>Prestadores</a>
-            <a href="/#pecuaristas" style={{ color: 'var(--text)', fontWeight: 500, fontSize: '0.95rem' }}>Produtores</a>
-          </nav>
+          {!isLoggedIn && (
+            <nav className="desktop-nav" style={{ display: 'none' }}>
+              <a href="/#problema" style={{ color: 'var(--text)', fontWeight: 500, fontSize: '0.95rem' }}>O Problema</a>
+              <a href="/#como-funciona" style={{ color: 'var(--text)', fontWeight: 500, fontSize: '0.95rem' }}>Como Funciona</a>
+              <a href="/#prestadores" style={{ color: 'var(--text)', fontWeight: 500, fontSize: '0.95rem' }}>Prestadores</a>
+              <a href="/#pecuaristas" style={{ color: 'var(--text)', fontWeight: 500, fontSize: '0.95rem' }}>Produtores</a>
+            </nav>
+          )}
 
-          <div>
-            <Link to="/cadastrar-prestador" className="btn-primary" style={{ fontSize: '0.95rem' }}>
-              <span className="header-cta-text">Quero me cadastrar</span>
-              <span className="header-cta-short">Cadastrar</span>
-            </Link>
+          {isLoggedIn && (
+            <nav className="desktop-nav" style={{ display: 'none' }}>
+              <Link to="/portal" style={{ color: 'var(--text)', fontWeight: 500, fontSize: '0.95rem' }}>Portal</Link>
+            </nav>
+          )}
+
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            {isLoggedIn ? (
+              <>
+                <Link to="/portal" className="btn-primary" style={{ fontSize: '0.95rem', gap: '8px' }}>
+                  <User size={16} />
+                  <span className="header-cta-text">Meu Portal</span>
+                  <span className="header-cta-short">Portal</span>
+                </Link>
+                <button onClick={logout} style={{ color: 'var(--muted)', display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.9rem', cursor: 'pointer', background: 'none', border: 'none', padding: '8px' }}>
+                  <LogOut size={16} />
+                  <span className="header-cta-text">Sair</span>
+                </button>
+              </>
+            ) : (
+              <Link to="/cadastrar-prestador" className="btn-primary" style={{ fontSize: '0.95rem' }}>
+                <span className="header-cta-text">Quero me cadastrar</span>
+                <span className="header-cta-short">Cadastrar</span>
+              </Link>
+            )}
           </div>
         </div>
       </header>
@@ -103,10 +136,11 @@ function App() {
       <main className="main-content" style={{ paddingTop: '80px' }}>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/cadastrar-demanda" element={<CadastrarDemanda />} />
+          <Route path="/cadastrar-demanda" element={
+            <ProdutorGuard><CadastrarDemanda /></ProdutorGuard>
+          } />
           <Route path="/cadastrar-prestador" element={<CadastrarPrestador />} />
-          <Route path="/oportunidades" element={<Oportunidades />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/portal" element={<Portal />} />
         </Routes>
       </main>
 

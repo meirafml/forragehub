@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import { Sprout, Save, ArrowLeft, CheckCircle2 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 export function CadastrarDemanda() {
+  const navigate = useNavigate();
+  const { login } = useAuth();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
 
@@ -66,7 +69,16 @@ export function CadastrarDemanda() {
         throw new Error(err.error || 'Erro ao cadastrar');
       }
 
-      setSuccess(true);
+      const data = await res.json();
+
+      // Save session and redirect to portal
+      login({
+        id: data.id || 'new',
+        nome: responsavel,
+        role: 'produtor',
+      });
+
+      navigate('/portal');
     } catch (err: any) {
       console.error(err);
       alert(err.message || 'Ocorreu um erro ao enviar. Tente novamente.');
