@@ -153,7 +153,7 @@ function App() {
                 <span style={{ fontSize: '1.5rem', fontWeight: 700, fontFamily: "'Space Grotesk', sans-serif", letterSpacing: '-0.02em', color: 'var(--text)' }}>Conexão<span style={{ color: 'var(--lime)' }}>Forragem</span></span>
               </div>
               <p style={{ marginBottom: '24px' }}>Feito para quem não pode esperar a janela fechar.</p>
-              <a href="https://wa.me/5511999999999" target="_blank" rel="noreferrer" className="btn-outline">
+              <a href="https://wa.me/5542991296772" target="_blank" rel="noreferrer" className="btn-outline">
                 Falar pelo WhatsApp
               </a>
             </div>
